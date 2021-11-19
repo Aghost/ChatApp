@@ -51,6 +51,18 @@ namespace ChatApp.Api
                 options.DefaultApiVersion = ApiVersion.Default;
             });
 
+            var key = Encoding.UTF8.GetBytes(Configuration["JwtConfiguration:Secret"]);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false, // TODO Update
+                ValidateAudience = false, // TODO Update
+                RequireExpirationTime = false, // TODO Update
+                ValidateLifetime = true,
+            };
+
+            services.AddSingleton(tokenValidationParameters);
             // Authentication
             services.AddAuthentication(options =>
             {
@@ -58,17 +70,8 @@ namespace ChatApp.Api
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(jwt => {
-                var key = Encoding.UTF8.GetBytes(Configuration["JwtConfiguration:Secret"]);
-
                 jwt.SaveToken = true;
-                jwt.TokenValidationParameters = new TokenValidationParameters {
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false, // TODO Update
-                    ValidateAudience = false, // TODO Update
-                    RequireExpirationTime = false, // TODO Update
-                    ValidateLifetime = true,
-                };
-
+                jwt.TokenValidationParameters = tokenValidationParameters;
             });
 
             services.AddDefaultIdentity<IdentityUser>(options

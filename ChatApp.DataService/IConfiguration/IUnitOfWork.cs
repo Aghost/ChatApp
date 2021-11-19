@@ -6,6 +6,7 @@ namespace ChatApp.DataService.IConfiguration
     public interface IUnitOfWork
     {
         IUsersRepository Users { get; }
+        IRefreshTokensRepository RefreshTokens { get; }
         Task CompleteAsync();
     }
 }

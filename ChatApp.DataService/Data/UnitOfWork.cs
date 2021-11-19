@@ -14,6 +14,7 @@ namespace ChatApp.DataService.Data
         private readonly ILogger _logger;
         
         public IUsersRepository Users { get; private set; }
+        public IRefreshTokensRepository RefreshTokens { get; private set; }
 
         public UnitOfWork(AppDbContext context, ILoggerFactory loggerFactory)
         {
@@ -21,6 +22,7 @@ namespace ChatApp.DataService.Data
             _logger = loggerFactory.CreateLogger("db_logs");
 
             Users = new UsersRepository(context, _logger);
+            RefreshTokens = new RefreshTokensRepository(context, _logger);
         }
 
         public async Task CompleteAsync()

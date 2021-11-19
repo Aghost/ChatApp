@@ -26,7 +26,7 @@ namespace ChatApp.DataService.Repository
             }
             catch(Exception e)
             {
-                _logger.LogError(e, $"{typeof(UsersRepository)} GetAll method error");
+                _logger.LogError(e, $"{typeof(UsersRepository)} All(get) method error");
                 return new List<User>();
             }
         }

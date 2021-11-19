@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Api", "ChatApp.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.DataService", "ChatApp.DataService\ChatApp.DataService.csproj", "{A66F59FF-BCED-484C-9516-8AA415C9E2A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Authentication", "ChatApp.Authentication\ChatApp.Authentication.csproj", "{7E4D46F4-C585-451B-BEE2-1CD67B154920}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Domain", "ChatApp.Domain\ChatApp.Domain.csproj", "{C9B62826-A4C4-43B0-AF6E-0A9548C482CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,13 +24,5 @@ Global
 		{A66F59FF-BCED-484C-9516-8AA415C9E2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A66F59FF-BCED-484C-9516-8AA415C9E2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A66F59FF-BCED-484C-9516-8AA415C9E2A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E4D46F4-C585-451B-BEE2-1CD67B154920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E4D46F4-C585-451B-BEE2-1CD67B154920}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E4D46F4-C585-451B-BEE2-1CD67B154920}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E4D46F4-C585-451B-BEE2-1CD67B154920}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9B62826-A4C4-43B0-AF6E-0A9548C482CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9B62826-A4C4-43B0-AF6E-0A9548C482CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9B62826-A4C4-43B0-AF6E-0A9548C482CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9B62826-A4C4-43B0-AF6E-0A9548C482CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

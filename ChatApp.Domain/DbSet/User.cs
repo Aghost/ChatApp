@@ -1,10 +1,10 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace ChatApp.Domain.DbSet
 {
     public class User : BaseEntity
     {
+        public Guid IdentityId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
