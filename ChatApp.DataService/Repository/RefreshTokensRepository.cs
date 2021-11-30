@@ -30,5 +30,40 @@ namespace ChatApp.DataService.Repository
                 return new List<RefreshToken>();
             }
         }
+
+        public async Task<RefreshToken> GetByRefreshToken(string refreshToken)
+        {
+            try
+            {
+                return _dbSet.Where(e => e.Token.ToLower() == refreshToken.ToLower())
+                    .AsNoTracking()
+                    .FirstOrDefault();
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e, $"{typeof(RefreshTokensRepository)} GetByRefreshToken method error");
+                return new RefreshToken();
+            }
+        }
+
+        public async Task<bool> MarkRefreshTokenAsUsed(RefreshToken refreshToken)
+        {
+            try
+            {
+                var token = _dbSet.Where(x => x.Token.ToLower() == refreshToken.Token.ToLower())
+                    .AsNoTracking()
+                    .FirstOrDefault();
+
+                if (token == null) return false;
+
+                token.IsUsed = refreshToken.IsUsed;
+                return true;
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e, $"{typeof(RefreshTokensRepository)} GetByRefreshToken method error");
+                return false;
+            }
+        }
     }
 }

@@ -1,29 +1,19 @@
 getusers:
-	@curl -i localhost:5000/api/v1.0/users/
+	@curl -i localhost:5000/api/v1.0/users/ -H 'Accept: application/json' -H 'Authorization Bearer $(token)'
 
-bearer:
-	@curl -i localhost:5000/api/v1.0/users/ -H 'Accept: application/json' -H 'Authorization: Bearer $(token)'
-
-getdefault:
-	@curl -i localhost:5000/api/v1.0/users/getuser?id=$(id) -H 'Accept: application/json' -H 'Authorization: Bearer $(token)'
-
-json:
-	@curl localhost:5000/api/v1.0/users/ | python3 -m json.tool
-
-test:
-	@curl -i localhost:5000/api/v1.0/test/
+hack:
+	@curl localhost:5000/api/v1.0/test/ | python3 -m json.tool
 
 register:
-	@curl -i -d '{"FirstName":"Ash", "LastName":"Ketchup", "Email":"Ashman@Kethup.com", "Password":"P0k3B@wl"}' -H 'Content-Type:application/json' -X POST localhost:5000/api/v1.0/accounts/register/
-
-registernew:
+	echo "register with firstname: $(firstname), lastname: $(lastname), email: $(email)"
 	@curl -i -d '{"FirstName":"$(firstname)", "LastName":"$(lastname)", "Email":"$(email)", "Password":"P0k3B@wl"}' -H 'Content-Type:application/json' -X POST localhost:5000/api/v1.0/accounts/register/
 
 login:
-	@curl -i -d '{"Email":"Ashman@Kethup.com", "Password":"P0k3B@wl"}' -H 'Content-Type:application/json' -X POST localhost:5000/api/v1.0/accounts/login/
+	echo "login with email: $(email)"
+	@curl -i -d '{"Email":"$(email)", "Password":"P0k3B@wl"}' -H 'Content-Type:application/json' -X POST localhost:5000/api/v1.0/accounts/login/
 
-get:
-	@curl -i -X GET http://localhost:5000/api/v1.0/users/getuser?id=$(id)
+getrefresh:
+	@curl -i -d '{"token":"$(token)", "refreshtoken":"$(refresh)"}' -H 'Content-Type:application/json' -X POST localhost:5000/api/v1.0/accounts/refreshtoken
 
-create:
-	@curl -i -d '{"FirstName":"klaas", "LastName":"vaak", "Email":"klaas@vaak.nl" }' -H 'Content-Type:application/json' -X POST localhost:5000/api/v1.0/users/
+getuser:
+	@curl -i localhost:5000/api/v1.0/users/getuser?id=$(id) -H 'Accept: application/json' -H 'Authorization: Bearer $(token)'
