@@ -68,6 +68,7 @@ namespace ChatApp.Api.Controllers.v1
             _user.LastName = registration.LastName;
             _user.Email = registration.Email;
 
+            // await userservice.Add(_user);
             await _unitOfWork.Users.Add(_user);
             await _unitOfWork.CompleteAsync();
 
