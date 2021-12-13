@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChatApp.DataService.IRepository;
+using ChatApp.Domain.DbSet;
 
 namespace ChatApp.DataService.IConfiguration
 {
@@ -11,6 +13,6 @@ namespace ChatApp.DataService.IConfiguration
         Task<User> GetUserById();
         Task<bool> AddUser();
         Task<bool> DeleteUser();
-        //Task<bool> CompleteAsync();
+        Task<bool> CompleteAsync();
     }
 }

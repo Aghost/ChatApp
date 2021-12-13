@@ -40,7 +40,8 @@ namespace ChatApp.Api
             services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ChatApp.Api")));
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
             services.AddCors();
             services.AddControllers();
 

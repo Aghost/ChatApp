@@ -5,6 +5,7 @@ using ChatApp.DataService.IConfiguration;
 using ChatApp.DataService.IRepository;
 using ChatApp.DataService.Repository;
 using ChatApp.Domain.DbSet;
+using System.Collections.Generic;
 
 namespace ChatApp.DataService.Data
 {
@@ -33,6 +34,26 @@ namespace ChatApp.DataService.Data
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public Task<IEnumerable<User>> GetAllUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> GetUserById()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteUser()
+        {
+            throw new NotImplementedException();
         }
     }
 }

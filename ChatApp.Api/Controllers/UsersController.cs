@@ -14,16 +14,18 @@ using ChatApp.Domain.DTOs.Incoming;
 namespace ChatApp.Api.Controllers.v1
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class UsersController : BaseController
+    public class UsersController
     {
-        public UsersController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IUserService _userService;
+        public UsersController(IUserService userService)
         {
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            return Ok(await _unitOfWork.Users.All());
+            return Ok(await _userService.Users.All());
         }
 
         [HttpPost]
@@ -36,8 +38,8 @@ namespace ChatApp.Api.Controllers.v1
             _user.LastName = user.LastName;
             _user.Email = user.Email;
 
-            await _unitOfWork.Users.Add(_user);
-            await _unitOfWork.CompleteAsync();
+            await _userService.Users.Add(_user);
+            await _userService.CompleteAsync();
 
             return CreatedAtRoute("GetUser", new { id = _user.Id }, user);
         }

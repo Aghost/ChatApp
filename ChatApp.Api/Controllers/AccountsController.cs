@@ -20,18 +20,19 @@ using ChatApp.Authentication.Configuration.Models.DTOs.Generic;
 
 namespace ChatApp.Api.Controllers.v1
 {
-    public class AccountsController : BaseController
+    public class AccountsController
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserService _userService;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly JwtConfiguration _jwtConfiguration;
 
-        public AccountsController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager,
+        public AccountsController(IUserService userService, UserManager<IdentityUser> userManager,
                 TokenValidationParameters tokenValidationParameters,
                 IOptionsMonitor<JwtConfiguration> optionMonitor)
-            : base(unitOfWork)
         {
             _userManager = userManager;
+            _userService = userService;
             _jwtConfiguration =  optionMonitor.CurrentValue;
             _tokenValidationParameters = tokenValidationParameters;
         }
@@ -68,9 +69,9 @@ namespace ChatApp.Api.Controllers.v1
             _user.LastName = registration.LastName;
             _user.Email = registration.Email;
 
-            // await userservice.Add(_user);
-            await _unitOfWork.Users.Add(_user);
-            await _unitOfWork.CompleteAsync();
+            await _userservice.Add(_user);
+            //await _unitOfWork.Users.Add(_user);
+            //await _unitOfWork.CompleteAsync();
 
             var token = await GenerateJwtToken(newUser);
             return Ok(new UserRegistrationResponse {
